@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AEGISA | Agentic Faucet Node</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary": "#00363d",
+              "on-surface": "#e5e2e1",
+              "tertiary-fixed-dim": "#f8acff",
+              "on-tertiary-container": "#f9afff",
+              "secondary-fixed-dim": "#00daf3",
+              "primary-fixed": "#e8deff",
+              "surface-dim": "#131313",
+              "on-tertiary-fixed-variant": "#7b0090",
+              "surface-variant": "#353534",
+              "on-secondary-fixed-variant": "#004f58",
+              "inverse-on-surface": "#313030",
+              "secondary-container": "#00e3fd",
+              "primary-container": "#5d21df",
+              "secondary-fixed": "#9cf0ff",
+              "on-primary-fixed": "#20005f",
+              "primary-fixed-dim": "#cdbdff",
+              "outline-variant": "#494456",
+              "on-background": "#e5e2e1",
+              "on-secondary-container": "#00616d",
+              "inverse-surface": "#e5e2e1",
+              "on-surface-variant": "#cbc3d9",
+              "on-error": "#690005",
+              "tertiary-container": "#9000a9",
+              "surface-container-low": "#1c1b1b",
+              "primary": "#cdbdff",
+              "surface-container-highest": "#353534",
+              "on-primary-fixed-variant": "#4f00d0",
+              "tertiary-fixed": "#ffd6ff",
+              "on-secondary-fixed": "#001f24",
+              "error": "#ffb4ab",
+              "background": "#131313",
+              "inverse-primary": "#6833ea",
+              "on-primary-container": "#cebfff",
+              "surface-bright": "#3a3939",
+              "on-primary": "#370096",
+              "surface-container-high": "#2a2a2a",
+              "on-error-container": "#ffdad6",
+              "error-container": "#93000a",
+              "surface": "#131313",
+              "on-tertiary": "#570067",
+              "outline": "#948da2",
+              "surface-container-lowest": "#0e0e0e",
+              "tertiary": "#f8acff",
+              "secondary": "#bdf4ff",
+              "surface-container": "#201f1f",
+              "surface-tint": "#cdbdff",
+              "on-tertiary-fixed": "#350040"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .tonal-shift {
+            background: linear-gradient(180deg, rgba(14, 14, 14, 0.8) 0%, rgba(19, 19, 19, 0.4) 100%);
+        }
+        .kinetic-void-glow {
+            box-shadow: 0 0 40px -10px rgba(93, 33, 223, 0.15);
+        }
+        .node-pulse-ring {
+            position: relative;
+        }
+        .node-pulse-ring::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border: 2px solid #f8acff;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        body {
+            background-color: #050505;
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface selection:bg-primary/30 scroll-smooth">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-neutral-950/60 backdrop-blur-lg tonal-shift bg-neutral-900/40">
+<nav class="flex items-center justify-between px-8 py-4 max-w-7xl mx-auto font-['Space_Grotesk'] tracking-tight">
+<div class="flex items-center gap-2 group cursor-pointer">
+<span class="text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-400">AEGISA</span>
+<div class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_#f8acff]"></div>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-cyan-400 border-b-2 border-cyan-400 pb-1 font-medium transition-colors duration-300" href="#">Guardian</a>
+<a class="text-neutral-400 hover:text-neutral-200 transition-colors duration-300" href="#">Networks</a>
+<a class="text-neutral-400 hover:text-neutral-200 transition-colors duration-300" href="#">Agent APIs</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 bg-primary text-on-primary rounded-full font-bold text-sm tracking-tight scale-95 active:opacity-80 transition-transform hover:bg-primary-fixed-dim">
+                    Launch Hub
+                </button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex flex-col items-center justify-center px-6 overflow-hidden">
+<!-- Background Glows -->
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-container/20 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary-container/10 blur-[120px] rounded-full"></div>
+<div class="max-w-5xl mx-auto text-center z-10">
+<div class="mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/20">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+<span class="text-[10px] font-label uppercase tracking-[0.2em] text-tertiary-fixed-dim">Agentic Faucet Node: Online</span>
+</div>
+<h1 class="font-headline text-5xl md:text-8xl font-bold tracking-tighter text-on-surface mb-6 leading-[0.9] text-balance">
+                    Aegisa: Stop Hunting for Gas. <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary-container to-tertiary">Start Building.</span>
+</h1>
+<p class="max-w-2xl mx-auto text-on-surface-variant text-lg md:text-xl font-light leading-relaxed mb-10 text-balance">
+                    Stop relying on broken public endpoints. <strong>Have your own gas.</strong> Aegisa is the first open-source, true self-hosted multichain gas dispenser. Connect your private keys and autonomously distribute your own testnet tokens across IOTA 2.0 and EVM networks.
+                </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<a class="group relative flex items-center gap-3 px-8 py-4 bg-primary text-on-primary rounded-full font-bold transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(205,189,255,0.4)]" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="terminal">terminal</span>
+<span>View Code</span>
+</a>
+<a class="flex items-center gap-3 px-8 py-4 border border-secondary text-secondary rounded-full font-bold transition-all hover:bg-secondary/5 hover:shadow-[0_0_30px_rgba(0,227,253,0.2)]" href="#">
+<span>Live Previews</span>
+<span class="material-symbols-outlined text-xl" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Dashboard Mockup/Visual -->
+<div class="mt-20 w-full max-w-6xl mx-auto relative px-4">
+<div class="aspect-video rounded-xl bg-surface-container-lowest border border-outline-variant/10 p-2 overflow-hidden backdrop-blur-xl">
+<div class="w-full h-full bg-surface-container-high/40 rounded-lg flex items-center justify-center relative group overflow-hidden">
+<img alt="Dashboard Preview" class="w-full h-full object-cover opacity-40 mix-blend-luminosity scale-105 group-hover:scale-110 transition-transform duration-700" data-alt="Futuristic dark data dashboard with glowing charts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOkakGapwdQrQpwWea3MCx8qbtknZ3v9y7xD-G2adu0Lrl22fhmZ8bgGuuhZzKH6CCzVZydi4Npnow_oRCddoRD6P5RAakUDRJdU97yF8q--KxigB6KR5Jv4jT16eBGmdCxNGHZOScV2rrxrInYmXAj-eqRt1UzVu9YaymvqJ6GjKe05T6_1ao998XAX7wcmMU2vXyF8b_K2ZhU07A4fC1_lP8kufLl1WpAsdpLp-HhPLAYKojpaUeMnS_nTtA4sIQ6ai_5bx0nA8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<span class="material-symbols-outlined text-6xl text-primary/50 mb-4" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="font-label text-xs tracking-[0.3em] uppercase opacity-60">TanStack Query + Viem Interface</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-32 px-6 max-w-7xl mx-auto">
+<div class="mb-20">
+<h2 class="font-headline text-4xl md:text-5xl font-bold mb-4">The Agentic Difference</h2>
+<div class="w-24 h-1 bg-gradient-to-r from-primary to-transparent"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Large Feature: Self-Hostable -->
+<div class="md:col-span-8 group p-8 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors relative overflow-hidden">
+<div class="relative z-10 h-full flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="dns">dns</span>
+<h3 class="font-headline text-2xl font-bold mb-4 text-primary-fixed">Vercel & Docker Ready Infrastructure</h3>
+<p class="text-on-surface-variant max-w-md">Deploy your full Node.js dashboard securely via Vercel for zero-config Serverless API routing, or host it privately through the provided docker-compose configuration in seconds.</p>
+</div>
+<div class="mt-12 flex items-center gap-4">
+<code class="px-3 py-1 bg-surface-container-lowest rounded border border-outline-variant/20 text-xs text-secondary-fixed font-mono">docker-compose up -d</code>
+<span class="text-[10px] font-label uppercase tracking-widest text-on-surface/40">Next.js 16 Framework</span>
+</div>
+</div>
+<!-- Abstract decoration -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2"></div>
+</div>
+<!-- Feature: IOTA Native -->
+<div class="md:col-span-4 p-8 rounded-xl bg-surface-container-lowest border border-outline-variant/10 hover:border-secondary/30 transition-all flex flex-col">
+<span class="material-symbols-outlined text-secondary text-3xl mb-6" data-icon="account_balance_wallet">account_balance_wallet</span>
+<h3 class="font-headline text-xl font-bold mb-4">IOTA 2.0 Native</h3>
+<p class="text-on-surface-variant text-sm mb-6">Fully integrated with the IOTA Move SDK to natively enqueue testnet tokens and handle multichain asset balances via TanStack Query.</p>
+<div class="mt-auto pt-6 border-t border-outline-variant/10 flex flex-wrap gap-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/10 text-secondary-fixed text-[10px] font-label uppercase">IOTA SDK</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/10 text-secondary-fixed text-[10px] font-label uppercase">MOVE SUPPORT</span>
+</div>
+</div>
+<!-- Feature: API First -->
+<div class="md:col-span-5 p-8 rounded-xl bg-surface-container-high border border-outline-variant/5 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-tertiary text-3xl mb-6" data-icon="api">api</span>
+<h3 class="font-headline text-xl font-bold mb-4">JSON API-First for Agents</h3>
+<p class="text-on-surface-variant text-sm">Automated workflows require automated funding. Our `/api/faucets` JSON endpoint is designed for autonomous AI agents to request testnet funds programmatically without human friction.</p>
+</div>
+<!-- Feature: The Guardian -->
+<div class="md:col-span-7 group p-8 rounded-xl bg-surface-container-lowest border border-outline-variant/10 relative overflow-hidden">
+<div class="relative z-10 flex flex-col md:flex-row gap-8 items-start">
+<div class="flex-1">
+<span class="material-symbols-outlined text-error text-3xl mb-6" data-icon="radar" style="font-variation-settings: 'FILL' 1;">radar</span>
+<h3 class="font-headline text-2xl font-bold mb-4">Guardian Monitoring & Soberbia</h3>
+<p class="text-on-surface-variant text-sm">Aegisa provides global real-time React hooks monitoring cross-chain low gas events, plus a dynamic <i>Soberbia Factor</i> tracking global faucet node health and lifecycle uptime.</p>
+</div>
+<div class="w-full md:w-48 aspect-square bg-surface-container-high rounded-lg flex items-center justify-center border border-outline-variant/20 relative group-hover:border-error/40 transition-colors">
+<div class="w-24 h-24 rounded-full border-2 border-error/20 flex items-center justify-center">
+<div class="w-16 h-16 rounded-full border-2 border-error/40 flex items-center justify-center">
+<div class="w-4 h-4 rounded-full bg-error animate-ping"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Tech Stack -->
+<section class="py-24 bg-surface-container-lowest/50 backdrop-blur-sm">
+<div class="max-w-7xl mx-auto px-6 text-center">
+<span class="font-label text-xs uppercase tracking-[0.4em] text-on-surface/40 mb-12 block">Built with the Kinetic Stack</span>
+<div class="flex flex-wrap items-center justify-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 bg-white text-black flex items-center justify-center rounded-full font-bold text-xl">N</div>
+<span class="text-[10px] font-label font-bold">NEXT.JS 16</span>
+</div>
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 border-2 border-primary text-primary flex items-center justify-center rounded-full font-bold text-xl">I</div>
+<span class="text-[10px] font-label font-bold">IOTA SDK</span>
+</div>
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 bg-[#38bdf8] text-black flex items-center justify-center rounded-full font-bold text-xl">T</div>
+<span class="text-[10px] font-label font-bold">TAILWIND</span>
+</div>
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 bg-blue-500 flex items-center justify-center rounded-full font-bold text-xl">D</div>
+<span class="text-[10px] font-label font-bold">DOCKER</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-32 px-6 relative overflow-hidden">
+<div class="max-w-4xl mx-auto bg-primary-container/10 border border-primary/20 rounded-2xl p-12 text-center relative z-10 backdrop-blur-md">
+<h2 class="font-headline text-4xl md:text-6xl font-bold mb-6">Secure Your Development</h2>
+<p class="text-on-primary-container text-lg mb-10 max-w-xl mx-auto">Join the future of agentic infrastructure. Host Aegisa today and never hunt for testnet gas again.</p>
+<a class="inline-flex items-center gap-3 px-10 py-5 bg-primary text-on-primary rounded-full font-bold text-lg hover:scale-105 transition-transform hover:shadow-[0_0_50px_rgba(93,33,223,0.3)]" href="#">
+<span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+                    View the Repository
+                </a>
+</div>
+<!-- Decorative Void Ring -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-primary/5 rounded-full pointer-events-none"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-primary/5 rounded-full pointer-events-none opacity-50"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-neutral-950 border-t border-neutral-800/20">
+<div class="max-w-7xl mx-auto py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-2">
+<span class="font-['Space_Grotesk'] font-bold text-neutral-200">AEGISA DASHBOARD</span>
+<span class="font-['Inter'] text-[10px] tracking-widest uppercase text-neutral-500">© 2026 AEGISA DASHBOARD. ENFORCED BY THE KINETIC VOID.</span>
+</div>
+<div class="flex items-center gap-8">
+<a class="text-neutral-500 hover:text-purple-400 font-['Inter'] text-xs tracking-widest uppercase transition-all" href="#">Systems</a>
+<a class="text-neutral-500 hover:text-purple-400 font-['Inter'] text-xs tracking-widest uppercase transition-all" href="#">GitHub</a>
+<a class="text-neutral-500 hover:text-purple-400 font-['Inter'] text-xs tracking-widest uppercase transition-all" href="#">API</a>
+</div>
+<div class="text-neutral-500 text-[10px] font-['Inter'] uppercase tracking-widest">
+                Built with Pride for the Web3 Open Source Ecosystem
+            </div>
+</div>
+</footer>
+</body></html>
