@@ -34,3 +34,4 @@ next-env.d.ts
 # Custom excluded instructions
 Instructions.md
 site.html
+index.html
