@@ -2,7 +2,8 @@
 
 Aegisa is an Open Source Testnet Dashboard and **True Self-Hosted Faucet Node** supporting IOTA 2.0 (Rebased) and several EVM testnets.
 
-**Unlike traditional dashboards that redirect traffic to external public faucets, Aegisa acts as a secure, standalone gas dispenser.** By provisioning your own heavily-funded private keys via environment variables, Aegisa natively broadcasts and dispenses testnet tokens to requesters on-chain using `viem` and the IOTA SDK.
+**Why rely on broken external testnet faucets? Simply have your own gas.** 
+Unlike traditional dashboards that redirect traffic to public faucets, Aegisa acts as a secure, standalone gas dispenser. By provisioning your own heavily-funded private keys via environment variables, Aegisa automatically broadcasts and dispenses your own testnet tokens to AI agents, automated tests, and local devs on-chain using `viem` and the IOTA SDK.
 
 ## Features
 - **Agentic API**: A set of JSON endpoints (`/api/faucets`) for other AI agents to query faucet statuses and enqueue testnet tokens natively.
