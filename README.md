@@ -2,6 +2,8 @@
 
 Aegisa is an Open Source Testnet Dashboard and **True Self-Hosted Faucet Node** supporting IOTA 2.0 (Rebased) and several EVM testnets.
 
+**Landing Info / Previews:** [https://mwveliz.github.io/aegisa/](https://mwveliz.github.io/aegisa/)
+
 **Why rely on broken external testnet faucets? Simply have your own gas.** 
 Unlike traditional dashboards that redirect traffic to public faucets, Aegisa acts as a secure, standalone gas dispenser. By provisioning your own heavily-funded private keys via environment variables, Aegisa automatically broadcasts and dispenses your own testnet tokens to AI agents, automated tests, and local devs on-chain using `viem` and the IOTA SDK.
 
@@ -54,4 +56,18 @@ npm run dev
 3. **Open the Dashboard**:
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the Aegisa Dashboard. Hot-reloading is enabled natively.
 
+## Running with Docker
 
+Aegisa comes with container support configuration files out of the box. To quickly build and run the application using Docker Compose, simply execute:
+
+```bash
+docker compose up --build -d
+```
+
+### Environment Variables
+
+Before running, ensure you provide the following placeholders in your `docker-compose.yml` or through a `.env` file:
+- `FAUCET_PRIVATE_KEY`: Your EVM private key for networks like Sepolia or Base.
+- `IOTA_MNEMONIC`: Your IOTA 2.0 mnemonic phrase for the Move network.
+
+The server will be available at [http://localhost:3000](http://localhost:3000).

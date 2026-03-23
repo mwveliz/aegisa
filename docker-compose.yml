@@ -9,4 +9,6 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
+      - FAUCET_PRIVATE_KEY=your_private_key_here
+      - IOTA_MNEMONIC=your_iota_mnemonic_here
     restart: always
